@@ -6,6 +6,8 @@
 *.lo
 *.o
 *.obj
+*.vs
+CarRental.Api\bin
 
 # Precompiled Headers
 *.gch
