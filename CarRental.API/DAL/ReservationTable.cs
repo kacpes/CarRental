@@ -35,7 +35,11 @@ namespace CarRental.API.DAL
             => await current.Reservations.Where(x => x.CarId == carId).ToListAsync();
 
         public async Task<Reservation> GetByBookingNumber(string bookingNumber)
-            => await current.Reservations.FirstOrDefaultAsync(x => x.BookingNumber == bookingNumber);
+            => await current.Reservations
+            .Include(x => x.ChosenCar)
+            .ThenInclude(x => x.CarCategory)
+            .Include(x => x.Customer)
+            .FirstOrDefaultAsync(x => x.BookingNumber == bookingNumber);
 
 
         public async Task<Reservation> GetById(int reservationId)

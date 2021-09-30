@@ -10,13 +10,15 @@ namespace CarRental.API.ViewModels
 
         public CarReturnModel CarReturn(DateTime endTime, int currentMilage)
         {
-            return new CarReturnModel(endTime, currentMilage)
+            return new CarReturnModel()
             {
                 BookingNumber = this.BookingNumber,
                 CustomerBirthDate = this.CustomerBirthDate,
                 RentedCar = this.RentedCar,
                 StartRent = this.StartRent,
-                StartKilometerCount = this.StartKilometerCount
+                StartKilometerCount = this.StartKilometerCount,
+                EndKilometerCount = currentMilage,
+                EndRent = endTime
             };
         }
 
@@ -28,13 +30,13 @@ namespace CarRental.API.ViewModels
 
         public DateTime? StartRent { get; set; }
         public int StartKilometerCount { get; set; }
-        public virtual DateTime? EndRent { get { return null; }  protected set { } }
-        public virtual int EndKilometerCount { get { return 0; } protected set { } }
+        public virtual DateTime? EndRent { get { return null; } set { } }
+        public virtual int EndKilometerCount { get { return 0; } set { } }
         public virtual bool CarIsRented
         { 
             get
             {
-                return (StartRent != null) && (EndRent == null);
+                return (StartRent != null);
             } 
         }
 
@@ -42,7 +44,7 @@ namespace CarRental.API.ViewModels
         {
             get
             {
-                return EndRent != null;
+                return false;
             }
         }
     }

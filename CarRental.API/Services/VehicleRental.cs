@@ -26,7 +26,7 @@ namespace CarRental.API.Services
             if (reservation == null || !reservation.RentStarted)
                 throw new Exception("User is trying to return vehicle, by booking number that does not exists");
 
-            IPriceCounter priceCounter = new ObjectFromStringFactory<IPriceCounter>().GetInstance((reservation.ChosenCar.CarCategory.CarType ?? "Base") + "PriceCounter");
+            IPriceCounter priceCounter = new ObjectFromStringFactory<IPriceCounter>().GetInstance((reservation.ChosenCar.CarCategory.CarType ?? "Base") + "PriceCounter", "CarRental.API.Services");
 
             reservation.Released = carReturnModel.EndRent ?? throw new IncorrectValueException("User tries to return car without enddate");
             reservation.MilageWhenReturned = carReturnModel.EndKilometerCount;
@@ -65,6 +65,12 @@ namespace CarRental.API.Services
                     CustomerId = carRentModel.customerId, //when customer exists it has filled birthdate there should be no need to save it
                 });
             }
+
+            if (!await _vehicleUnitOfWork.ReservationTable.CheckIfDateIsAvaliableFor(reservation))
+                return await Task.FromResult(new CarRentModel()
+                {
+                    BookingNumber = "Car is booked in this time"
+                });
 
             reservation.MilageWhenStarted = carRentModel.StartKilometerCount;
             reservation.Started = carRentModel.StartRent ?? throw new IncorrectValueException();

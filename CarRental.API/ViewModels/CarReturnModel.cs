@@ -19,8 +19,8 @@ namespace CarRental.API.ViewModels
 
         }
 
-        public override DateTime? EndRent { get; protected set; }
-        public override int EndKilometerCount { get; protected set; }
+        public override DateTime? EndRent { get; set; }
+        public override int EndKilometerCount { get; set; }
         public override bool CarIsRented
         {
             get { return false; }

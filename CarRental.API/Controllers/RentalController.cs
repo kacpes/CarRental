@@ -19,13 +19,19 @@ namespace CarRental.API.Controllers
             _vehicleRental = vehicleRental;
         }
 
-        [HttpGet("RentCar")]
+        [HttpGet("GetBasicCarVm")]
+        public Car GetBasicCarVm()
+        {
+            return new Car();
+        }
+
+        [HttpPost("RentCar")]
         public async Task<CarRentModel> RentCar(CarRentModel vm)
         {
             return await _vehicleRental.RentVehicle(vm);
         }
 
-        [HttpGet("ReturnCar")]
+        [HttpPost("ReturnCar")]
         public async Task<Bill> ReturnACar(CarReturnModel vm)
         {
             return await _vehicleRental.ReturnVehicle(vm);
