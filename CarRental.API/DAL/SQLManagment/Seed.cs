@@ -17,7 +17,7 @@ namespace CarRental.API.DAL.SQLManagment
         private static void SeedCategories(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CarCategory>().HasData(
-                new CarCategory { CarCategoryId = 1, CarType = Enums.CarType.Regular.ToString() },
+                new CarCategory { CarCategoryId = 1, CarType = Enums.CarType.Compact.ToString() },
                 new CarCategory { CarCategoryId = 2, CarType = Enums.CarType.Premium.ToString() },
                 new CarCategory { CarCategoryId = 3, CarType = Enums.CarType.Minivan.ToString() }
                 );

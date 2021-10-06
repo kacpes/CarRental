@@ -5,13 +5,13 @@ using CarRental.API.Exceptions;
 
 namespace CarRental.API.Services
 {
-    public class BasePriceCounterTest
+    public class CompactPriceCounterTest
     {
         IPriceCounter _testObject { get; set; }
 
-        public BasePriceCounterTest()
+        public CompactPriceCounterTest()
         {
-            _testObject = new BasePriceCounter();
+            _testObject = new CompactPriceCounter();
         }
 
         [Fact]

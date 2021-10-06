@@ -7,7 +7,7 @@ namespace CarRental.API.Enums
 {
     public enum CarType
     {
-        Regular,
+        Compact,
         Premium,
         Minivan
     }

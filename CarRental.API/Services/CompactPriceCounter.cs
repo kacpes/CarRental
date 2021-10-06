@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CarRental.API.Services
 {
-    public class BasePriceCounter : IPriceCounter
+    public class CompactPriceCounter : IPriceCounter
     {
         public double CalculatePrice(CarRentModel car)
         {
